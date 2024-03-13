@@ -12,17 +12,8 @@ class SmppTransmitter
 {
     protected $transport, $client, $credentialTransmitter;
 
-    
-
-    public function __construct()
-    {
-        
+    public function __construct(){
         $this->connect();
-    }
-
-    protected function test()
-    {
-        dd('here');
     }
 
     protected function connect() {
@@ -38,7 +29,6 @@ class SmppTransmitter
 
         $this->transport->open();
 
-        // Corrected password parameter here
         $this->client->bindReceiver(config('smpp.smpp_receiver_id'), config('smpp.smpp_receiver_password'));
     } catch (\Exception $e) {
         Log::error('SMPP Connection Error: ' . $e->getMessage());
